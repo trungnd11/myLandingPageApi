@@ -1,10 +1,13 @@
-import { IsEmail, IsInt, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsInt, IsString } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
-export class UpdateAboutDto {
+export class AboutDto {
   @IsString() name: string;
   @IsEmail() email: string;
   @IsInt() age: number;
   @IsString() from: string;
   @IsString() description: string;
-  @IsOptional() @IsString() avatarUrl?: string;
+  @IsString() avatarUrl?: string;
 }
+
+export class UpdateAboutDto extends PartialType(AboutDto) {}
